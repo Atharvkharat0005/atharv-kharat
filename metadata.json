@@ -1,0 +1,9 @@
+{
+  "name": "Smart Agriculture Advisory Platform",
+  "description": "A comprehensive platform for farmers to get crop advisory, risk analysis, and expert community support.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

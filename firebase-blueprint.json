@@ -1,0 +1,85 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile for farmers and experts",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["farmer", "expert"] },
+        "expertise": { "type": "string" },
+        "reputation": { "type": "number" },
+        "answersCount": { "type": "number" },
+        "isVerified": { "type": "boolean" },
+        "photoURL": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Advisory": {
+      "title": "Advisory",
+      "description": "Crop advisory recommendations",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "cropName": { "type": "string" },
+        "soilType": { "type": "string" },
+        "fieldSize": { "type": "string" },
+        "temperature": { "type": "number" },
+        "humidity": { "type": "number" },
+        "rainfall": { "type": "number" },
+        "location": { "type": "string" },
+        "fertilizerRec": { "type": "string" },
+        "irrigationRec": { "type": "string" },
+        "pestAdvice": { "type": "string" },
+        "riskScore": { "type": "number" },
+        "riskLevel": { "type": "string" },
+        "riskReason": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Post": {
+      "title": "Post",
+      "description": "Community forum post",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "cropName": { "type": "string" },
+        "problem": { "type": "string" },
+        "location": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "aiDiagnosis": { "type": "string" },
+        "aiConfidence": { "type": "number" },
+        "bestAnswerId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "Answer": {
+      "title": "Answer",
+      "description": "Expert response to a post",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "postId": { "type": "string" },
+        "expertId": { "type": "string" },
+        "expertName": { "type": "string" },
+        "diagnosis": { "type": "string" },
+        "treatment": { "type": "string" },
+        "pesticide": { "type": "string" },
+        "prevention": { "type": "string" },
+        "isVerifiedExpert": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "firestore": {
+    "users": { "schema": "User", "description": "User profiles" },
+    "advisories": { "schema": "Advisory", "description": "Crop advisories" },
+    "posts": { "schema": "Post", "description": "Forum posts" },
+    "posts/{postId}/answers": { "schema": "Answer", "description": "Answers to posts" }
+  }
+}
